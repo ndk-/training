@@ -1,3 +1,5 @@
+type ChildType = 'right' | 'left';
+
 export class Tree {
     private root?: TreeNode;
 
@@ -32,10 +34,10 @@ class TreeNode {
     }
 
     processChild = (func: Function, value: number) => (value > this.value) ?
-        func("right", value) :
-        func("left", value);
+        func('right', value) :
+        func('left', value);
 
-    insertIntoChild = (child: "right" | "left", value: number) => {
+    insertIntoChild = (child: ChildType, value: number) => {
         if (this[child])
             return this[child].insert(value);
         this[child] = new TreeNode(value);
@@ -51,7 +53,7 @@ class TreeNode {
         }
     }
 
-    findInChild = (child: "right" | "left", value: number) =>
+    findInChild = (child: ChildType, value: number) =>
         this[child]?.findNode(value) || undefined;
 
     findNode = (value: number) => (this.value === value) ?

@@ -48,8 +48,35 @@ describe(`AVL tree testing`, () => {
     it("should balance the height of the tree when LR balancing is required", () => {
         const tree = new Tree();
 
-        [50, 20, 60, 10, 8, 15, 32, 46, 11, 48].forEach(number => tree.insert(number));
+        [10, 20, 15].forEach(number => tree.insert(number));
+
+        expect(tree.height).toEqual(2);
+    });
+
+    it("should balance the height of the tree when RL balancing is required", () => {
+        const tree = new Tree();
+
+        [20, 10, 15].forEach(number => tree.insert(number));
+
+        expect(tree.height).toEqual(2);
+    });
+
+    it("should balance the height of the tree when mix of LR/RL balancing is required", () => {
+        const tree = new Tree();
+
+        [100, 200, 150, 170, 175, 174, 177, 125].forEach(number => {
+            tree.insert(number);
+            console.log(JSON.stringify(tree));
+        });
 
         expect(tree.height).toEqual(4);
-    })
+    });
+
+    it("should balance the height of the tree for randomly inserted numbers", () => {
+        const tree = new Tree();
+
+        [10, 20, 60, 10, 8, 15, 32, 46, 11, 48].forEach(number => tree.insert(number));
+
+        expect(tree.height).toEqual(4);
+    });
 });

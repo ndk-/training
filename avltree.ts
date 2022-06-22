@@ -46,9 +46,15 @@ class TreeNode {
     insert = (value: number) => {
         this.processChild(this.insertIntoChild, value);
         if (this.balanceFactor < -1) {
+            if (value < this.right?.value) {
+                this.right.rotateRight();
+            }
             this.rotateLeft();
         }
         else if (this.balanceFactor > 1) {
+            if (value > this.left?.value) {
+                this.left.rotateLeft();
+            }
             this.rotateRight();
         }
     }

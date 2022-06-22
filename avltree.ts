@@ -31,18 +31,18 @@ class TreeNode {
         return (this.left?.height || 0) - (this.right?.height || 0);
     }
 
-    processLeafs = (func: Function, value: number) => (value > this.value) ?
+    processChild = (func: Function, value: number) => (value > this.value) ?
         func("right", value) :
         func("left", value);
 
-    insertIntoLeaf = (leaf: "right" | "left", value: number) => {
-        if (this[leaf])
-            return this[leaf].insert(value);
-        this[leaf] = new TreeNode(value);
+    insertIntoChild = (child: "right" | "left", value: number) => {
+        if (this[child])
+            return this[child].insert(value);
+        this[child] = new TreeNode(value);
     }
 
     insert = (value: number) => {
-        this.processLeafs(this.insertIntoLeaf, value);
+        this.processChild(this.insertIntoChild, value);
         if (this.balanceFactor < -1) {
             this.rotateLeft();
         }
@@ -51,11 +51,11 @@ class TreeNode {
         }
     }
 
-    findInLeaf = (leaf: "right" | "left", value: number) =>
-        this[leaf]?.findNode(value) || undefined;
+    findInChild = (child: "right" | "left", value: number) =>
+        this[child]?.findNode(value) || undefined;
 
     findNode = (value: number) => (this.value === value) ?
-        this : this.processLeafs(this.findInLeaf, value);
+        this : this.processChild(this.findInChild, value);
 
 
     rotateLeft = () => {

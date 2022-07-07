@@ -1,2 +1,6 @@
-node_modules
+.idea/
+build/
+bin/
+.gradle/
+node_modules/
 package-lock.json

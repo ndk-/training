@@ -64,10 +64,7 @@ describe(`AVL tree testing`, () => {
     it("should balance the height of the tree when mix of LR/RL balancing is required", () => {
         const tree = new Tree();
 
-        [100, 200, 150, 170, 175, 174, 177, 125].forEach(number => {
-            tree.insert(number);
-            console.log(JSON.stringify(tree));
-        });
+        [100, 200, 150, 170, 175, 174, 177, 125].forEach(number => tree.insert(number));
 
         expect(tree.height).toEqual(4);
     });
